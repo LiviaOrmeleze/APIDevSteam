@@ -249,8 +249,25 @@ namespace APIDevSteamJau.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(jogo);
+        }
 
+        // [HttpPUT] : Remover um Desconto
+        [HttpPut("RemoverDesconto")]
+        public async Task<IActionResult> RemoverDesconto(Guid jogoId)
+        {
+            // Verifica se o jogo existe
+            var jogo = await _context.Jogos.FindAsync(jogoId);
+            if (jogo == null)
+                return NotFound("Jogo não encontrado.");
 
+            // Remove o desconto
+            jogo.Desconto = 0;
+            jogo.Preco = (decimal)jogo.PrecoOriginal;
+
+            // Atualiza o jogo no banco de dados
+            _context.Entry(jogo).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return Ok(jogo);
         }
 
     }
