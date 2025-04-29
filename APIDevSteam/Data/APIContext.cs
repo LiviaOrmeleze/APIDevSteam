@@ -14,6 +14,10 @@ namespace APIDevSteam.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<JogoCategoria> JogosCategorias { get; set; }
         public DbSet<JogoMidia> jogoMidias { get; set; }
+        public DbSet<Carrinho> Carrinhos { get; set; }
+        public DbSet<ItemCarrinho> ItensCarrinhos { get; set; }
+
+
 
 
 
@@ -26,6 +30,8 @@ namespace APIDevSteam.Data
             builder.Entity<Categoria>().ToTable("Categorias");
             builder.Entity<JogoCategoria>().ToTable("JogosCategorias");
             builder.Entity<JogoMidia>().ToTable("JogoMidias");
+            builder.Entity<Carrinho>().ToTable("Carrinhos");
+            builder.Entity<ItemCarrinho>().ToTable("ItensCarrinhos");
 
 
         }
